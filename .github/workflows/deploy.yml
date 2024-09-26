@@ -1,4 +1,4 @@
-name: Build and Push and Update container Visitons_Dubai_D231
+name: Build and Push and Update container visitonsdubai
 #Start update
 on:
   push:
@@ -7,10 +7,10 @@ env:
   #IMAGE_TAG: ${{ github.ref }}
   VERSION: v1.0
   IMAGE_TAG: ${{ github.run_number }}
-  IMAGE_NAME: ghcr.io/${{ github.actor }}/Visitons_Dubai_D231
+  IMAGE_NAME: ghcr.io/${{ github.actor }}/visitonsdubai
    #IMAGE_TAG: ${{ github.ref }}
-  APP: Visitons_Dubai_D231:v1.0.0
-  SERVICES: Visitons_Dubai_D231-app
+  APP: visitonsdubai:v1.0.0
+  SERVICES: visitonsdubai-app
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
@@ -25,7 +25,7 @@ jobs:
           docker tag ${{ env.IMAGE_NAME }}:${{ env.VERSION }}.${{ env.IMAGE_TAG }} ${{ env.IMAGE_NAME }}:latest
           docker push ${{ env.IMAGE_NAME }}:${{ env.VERSION }}.${{ env.IMAGE_TAG }}
           docker push ${{ env.IMAGE_NAME }}:latest
-  deploy-Visitons_Dubai_D231-container:
+  deploy-visitonsdubai-container:
     needs: build-and-push
     runs-on: ubuntu-latest
     steps:
@@ -41,12 +41,12 @@ jobs:
             echo "Download Docker Compose file "
             mkdir devoir
             cd devoir
-            curl -o docker-compose.yml https://raw.githubusercontent.com/blacksea-technology/automation-files/main/Visitons_Dubai_D231-compose.yml
+            curl -o docker-compose.yml https://raw.githubusercontent.com/blacksea-technology/automation-files/main/visitonsdubai-compose.yml
             echo "Change Image values"
             echo "Login to Container registry"
             docker login --username ${{ github.actor }} --password ${{ secrets.GH_PAT }} ghcr.io
-            docker pull ghcr.io/${{ github.actor }}/Visitons_Dubai_D231:latest
-            docker tag ghcr.io/${{ github.actor }}/Visitons_Dubai_D231:latest Visitons_Dubai_D231:v1.0.0          
+            docker pull ghcr.io/${{ github.actor }}/visitonsdubai:latest
+            docker tag ghcr.io/${{ github.actor }}/visitonsdubai:latest visitonsdubai:v1.0.0          
             docker images --format '{{.Repository}}:{{.Tag}}' | grep ghcr.io/${{ github.actor }} | xargs -I {} docker rmi {}
             echo "Start Docker Compose Stack"
             docker compose -f docker-compose.yml up -d
