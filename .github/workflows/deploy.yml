@@ -38,9 +38,8 @@ jobs:
           port: ${{ secrets.PORT }}
           script: |
             set +x
-            echo "Download Docker Compose file "
-            mkdir devoir
-            cd devoir
+            echo "Download Docker Compose file " 
+            cd /tmp
             curl -o docker-compose.yml https://raw.githubusercontent.com/blacksea-technology/automation-files/main/visitonsdubai-compose.yml
             echo "Change Image values"
             echo "Login to Container registry"
