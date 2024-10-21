@@ -1,0 +1,60 @@
+#navbar, footer {
+    display: none;
+}
+
+body {
+   background-color: #fff;
+}
+
+div {
+   text-align: center;
+}
+
+p {
+   color: #000;
+   font-size: 15pt;
+   text-align: center;
+}
+
+h1 {
+   font-family: serif;
+   font-size: 20pt;
+   text-align: left;
+   color: #000;
+   text-align: center;
+}
+
+a {
+   color: #000;
+   font-size: 12pt;
+}
+
+p.description {
+  text-align: justify;
+}
+
+div.gallery {
+  margin: 5pt;
+  border: 1pt solid #ccc;
+  float: left;
+}
+
+div.gallery2 {
+  display: grid;
+  justify-content: center;
+  border: 1pt solid #ccc; 
+}
+
+div.gallery:hover {
+  border: 1pt solid #777;
+}
+
+div.desc {
+  padding: 15pt;
+  text-align: center;
+  font-size: 15pt;
+}
+div.gallery-container {
+  display: grid;
+  justify-content: center;
+}
